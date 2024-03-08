@@ -344,5 +344,5 @@ public class Main {
 ```
 # Классы и объекты
 ```java
-/upload
+
 ```
