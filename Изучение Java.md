@@ -381,6 +381,46 @@ public class Main {
 }
 ```
 # Регуляторы доступа
+### NewClass.java
 ```java
-
+package vladiscrafter;
+public class NewClass {
+    public String data1; // доступен везде (и изменяется)
+    protected String data2; // доступен в подклассах того же package
+    private int data3; // доступен ТОЛЬКО в этом классе
+    public static int numberOfExamples = 0; // статичный - равен для любого случая вызова
+		
+    public NewClass(String data1, String data2, int data3) {
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+        numberOfExamples++;
+    }
+    public void intIncrease() {
+        data3++;
+    }
+    public int getData3() { // "получатель"
+        return data3;
+    }
+    public void setData3(int data3) { // "установщик"
+        this.data3 = data3;
+    }
+}
+```
+### Main.java
+```java
+package vladiscrafter;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        NewClass example1 = new NewClass("String1_1", "String1_2", 0);
+        NewClass example2 = new NewClass("String2_1", "String2_2", 1);
+        System.out.println("int второго объекта: " + example2.getData3());
+        example2.intIncrease(); // data3 -> getData3
+        System.out.println("Он же, прошедший increase: " + example2.getData3());
+        System.out.println("Объектов для примера: " + NewClass.numberOfExamples); // 2
+        NewClass example3 = new NewClass("String3_1", "String3_2", 2);
+        System.out.println("А теперь: " + NewClass.numberOfExamples); // 3
+    }
+}
 ```
