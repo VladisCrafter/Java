@@ -343,6 +343,40 @@ public class Main {
 }
 ```
 # Классы и объекты
+### NewClass.java
 ```java
-
+package vladiscrafter;
+public class NewClass {
+    public String data1; // определение параметров,
+    public String data2; // с которыми задаётся
+    public int data3; // объект типа NewClass
+//    public NewClass() {
+//        // конструктор по умолчанию
+//    }
+    public NewClass(String data1, String data2, int data3) { // конструктор с параметрами
+        this.data1 = data1; // назначение
+        this.data2 = data2; // параметров
+        this.data3 = data3; // объекта
+    }
+    public void intIncrease() {
+        data3++; // простенькое действие для примера
+    }
+}
+```
+### Main.java
+```java
+package vladiscrafter;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        NewClass example1 = new NewClass("String1_1", "String1_2", 0);
+        NewClass example2 = new NewClass("String2_1", "String2_2", 1);
+        // создание объектов с заданием соответствующих параметров
+        System.out.println("int второго объекта: " + example2.data3);
+        example2.intIncrease();
+        System.out.println("Он же, прошедший increase: " + example2.data3);
+        example2.data3 += 20;
+        System.out.println("Он же, изменённый вручную: " + example2.data3);
+    }
+}
 ```
