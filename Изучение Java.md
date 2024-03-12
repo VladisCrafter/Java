@@ -515,3 +515,92 @@ public class Main {
     }
 }
 ```
+# Абстрактные классы и интерфейсы
+### NewClass3.java
+```java
+package vladiscrafter;
+
+public class NewClass3 extends SuperClass implements Itestable {
+    public NewClass3(String data1, String data2, int data3) {
+        super(data1, data2, data3);
+    }
+    
+    @Override
+    public void undefAction() {
+        test();
+    }
+    
+    @Override
+    public void test() {
+        System.out.println("Третий класс протестирован.");
+    }
+}
+```
+### SuperClass.java
+```java
+package vladiscrafter;
+
+public abstract class SuperClass { // класс назначен абстрактным
+    public String data1;
+    protected String data2;
+    private int data3;
+	
+    public SuperClass(String data1, String data2, int data3) {
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+    }
+	
+    public abstract void undefAction(); // никаких условий для метода здесь не прописывается! 
+	
+    public int getData3() {
+        return data3;
+    }
+	
+    public void intIncrease() {
+        data3++;
+        System.out.println("intIncrease для " + data1 + " пройдён! Результат: " + data3);
+    }
+}
+```
+### Itestable.java
+```java
+package vladiscrafter;
+
+public interface Itestable { // "I" в начале и "able" в конце названия интерфейса
+    void test();
+}
+```
+### Main.java
+```java
+package vladiscrafter;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        SuperClass example1 = new NewClass("1_String1_1", "1_String1_2", 10);
+        SuperClass example2 = new NewClass("1_String2_1", "1_String2_2", 20);
+        
+        SuperClass example3 = new NewClass2("2_String_3_1", "2_String3_2",30);
+        SuperClass example4 = new NewClass2("2_String_4_1", "2_String4_2",40);
+        
+        NewClass3 example5 = new NewClass3("3_String5_1", "3_String5_2", 50);
+        
+        example2.undefAction(); // выполнение метода
+        example3.undefAction(); // по своему
+        example5.undefAction(); // выполнение test через undefAction  
+        ((NewClass3) example5).test(); // example5.cast + tab позволяет выполнить напрямую
+        example5.test(); // сработает, только если выше сменить SuperClass на NewClass3
+        
+        List<SuperClass> classes = new ArrayList<>();
+        classes.add(example1);
+        classes.add(example2);
+        classes.add(example3);
+        classes.add(example4);
+        classes.add(example5);
+        
+        List<Itestable> testables = new ArrayList<>();
+        testables.add(example5); // только если выше сменить SuperClass на NewClass3
+    }
+}
+```
