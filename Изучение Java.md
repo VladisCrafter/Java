@@ -424,3 +424,8 @@ public class Main {
     }
 }
 ```
+# Наследование и полиморфизм
+### NewClass.java
+```java
+
+```
