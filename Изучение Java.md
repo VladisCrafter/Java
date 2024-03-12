@@ -389,7 +389,7 @@ public class NewClass {
     protected String data2; // доступен в подклассах того же package
     private int data3; // доступен ТОЛЬКО в этом классе
     public static int numberOfExamples = 0; // статичный - равен для любого случая вызова
-		
+	
     public NewClass(String data1, String data2, int data3) {
         this.data1 = data1;
         this.data2 = data2;
@@ -411,6 +411,7 @@ public class NewClass {
 ```java
 package vladiscrafter;
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         NewClass example1 = new NewClass("String1_1", "String1_2", 0);
@@ -425,7 +426,92 @@ public class Main {
 }
 ```
 # Наследование и полиморфизм
+### SuperClass.java
+```java
+package vladiscrafter;
+
+public class SuperClass {
+    public String data1;
+    protected String data2;
+    private int data3;
+	
+    public SuperClass(String data1, String data2, int data3) {
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+    }
+    
+    public void action() {
+        System.out.println("\nТестовое действие для любого класса подтверждено!");
+    } // action в данном случае исполняется одинаково любым классом, но это можно изменить... 
+		
+    public void display() {
+        System.out.println(data1 + "\n" + data2 + "\n" + data3);
+    }
+	
+    public int getData3() {
+        return data3;
+    }
+	
+    public void intIncrease() {  
+        data3++;
+        System.out.println("intIncrease для " + data1 + " пройдён! Результат: " + data3);
+    }
+}
+// ВСЁ ЭТО БУДЕТ РАБОТАТЬ С ЛЮБЫМ ПОДКЛАССОМ!
+```
 ### NewClass.java
 ```java
+package vladiscrafter;
 
+public class NewClass extends SuperClass { // NewClass является пеодклассом SuperClass
+	
+    public NewClass(String data1, String data2, int data3) {
+        super(data1, data2, data3);
+    }
+	
+    @Override // действие action переписывается специально под этот класс
+    public void action() {
+        System.out.println("\nТестовое действие для первого класса подтверждено!");
+    }
+}
+```
+### NewClass2.java
+```java
+package vladiscrafter;
+
+public class NewClass2 extends SuperClass { // NewClass2 является пеодклассом SuperClass
+	
+    public NewClass2(String data1, String data2, int data3) {
+        super(data1, data2, data3);
+    }
+	
+    @Override // действие action переписывается специально под этот класс
+    public void action() {
+        System.out.println("\nТестовое действие для второго класса подтверждено!");
+    }
+}
+```
+### Main.Java
+```java
+package vladiscrafter;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        SuperClass example1 = new NewClass("1_String1_1", "1_String1_2", 10);
+        SuperClass example2 = new NewClass("1_String2_1", "1_String2_2", 20);  
+        // необязательно определять выбор класса в начале, можно просто исп. SuperClass!
+        SuperClass example3 = new NewClass2("2_String_3_1", "2_String3_2",30);
+        SuperClass example4 = new NewClass2("2_String_4_1", "2_String4_2",40);
+        System.out.println("int второго объекта: " + example2.getData3());
+        System.out.println("int четвёртого объекта: " + example4.getData3());
+        example2.intIncrease();
+        example4.intIncrease();
+        System.out.println("\nОтображение инфы о третьем объекте: ");
+        example3.display();
+        example2.action();
+        example3.action();
+    }
+}
 ```
