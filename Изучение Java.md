@@ -604,3 +604,19 @@ public class Main {
     }
 }
 ```
+# Анонимные классы
+### Main.java
+```java
+SuperClass example6wrong = new SuperClass("4_string6_1", "4_string6_2", 60);
+// Это не сработает, т.к. SuperClass абстрактный
+
+SuperClass example6 = new SuperClass("4_string6_1", "4_string6_2", 60) {
+    @Override // создание анонимного класса прямо здесь
+    public void undefAction() {
+    }
+    @Override // свободное переписывание действия
+    public void intIncrease() {
+        super.intIncrease();
+    }
+};
+```
