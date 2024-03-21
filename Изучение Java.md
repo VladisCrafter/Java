@@ -620,3 +620,93 @@ SuperClass example6 = new SuperClass("4_string6_1", "4_string6_2", 60) {
     }
 };
 ```
+# * Третье упражнение
+### Main.java
+```java
+package vladiscrafter;  
+  
+import java.util.Scanner;  
+  
+public class Main {  
+    public static void main(String[] args) {  
+        while(true) {  
+            System.out.println("Бобро пожаловать в третий, заключительный калькулятор! Этот раз был непрост...");  
+            System.out.println("Итак, введите тип операции:");  
+            Scanner scanner = new Scanner(System.in);  
+            String opType = scanner.next();  
+            System.out.println("Теперь первое число:");  
+            int f = scanner.nextInt();  
+            System.out.println("И второе число:");  
+            int s = scanner.nextInt();  
+            int result = 0;  
+            switch (opType) {  
+                case "+" -> {  
+                    Add add = new Add(f, s, result);  
+                    add.calculate();  
+                } case "-" -> {  
+                    Sub sub = new Sub(f, s, result);  
+                    sub.calculate();  
+                } case "*" -> {  
+                    Mul mul = new Mul(f, s, result);  
+                    mul.calculate();  
+                } case "/" -> {  
+                    Div div = new Div(f, s, result);  
+                    div.calculate();  
+                } case "%" -> {  
+                    Per per = new Per(f, s, result);  
+                    per.calculate();  
+                } default -> throw new IllegalStateException("Неверный тип операции: " + opType);  
+            }  
+            System.out.println("Для продолжения введите: +");  
+            String continuing = scanner.next();  
+            if (continuing.equals("+")) {  
+                System.out.println("Перезапуск...");  
+                continue;  
+            } else {  
+                System.out.println("Прерывание...");  
+                break;  
+            }  
+        }  
+    }  
+}
+```
+### Add.java (+ остальные операции)
+```java
+package vladiscrafter;  
+  
+public class Add implements ICalculable { // сложение
+// public class Sub implements ICalculable // вычитание
+// public class Mul implements ICalculable // умножение
+// public class Div implements ICalculable // деление
+// public class Per implements ICalculable // остаток
+    public int f;  
+    public int s;  
+    public int result;  
+    public Add(int f, int s, int result) { // сложение
+    // public Sub(int f, int s, int result) { // вычитание
+    // public Mul(int f, int s, int result) { // умножение
+    // public Div(int f, int s, int result) { // деление
+    // public Per(int f, int s, int result) { // остаток
+        this.f = f;  
+        this.s = s;  
+        this.result = result;  
+    }  
+    @Override  
+    public void calculate() {  
+        result = f + s; // сложение
+        // result = f - s; // вычитание
+        // result = f * s; // умножение
+        // result = f / s; // деление
+        // result = f % s; // остаток
+        System.out.println("Результат операции: \n" + result);  
+    }  
+}
+```
+### ICalculable.java
+```java
+package vladiscrafter;  
+  
+public interface ICalculable {  
+    void calculate();  
+}
+```
