@@ -710,3 +710,67 @@ public interface ICalculable {
     void calculate();  
 }
 ```
+# Перечисления
+### Main.java
+```java
+package vladiscrafter;  
+  
+import java.util.Scanner;  
+  
+public class Main {  
+    public static void main(String[] args) {  
+        Options option = Options.OPTION2;  
+        System.out.println("Выбранная опция: " + option + "\n");  
+		
+        Tiers chosenTier_one = Tiers.TIER3;  
+        Tiers chosenTier_two = Tiers.TIER2;  
+        Tiers chosenTier_three = Tiers.TIER1;  
+		
+        System.out.println("Имя третьего тира: " + chosenTier_one.getName());  
+        System.out.println("Уровень второго тира: " + chosenTier_two.getLevel());  
+        System.out.println("Эффективность первого тира: " + chosenTier_three.getEfficiency());  
+    }  
+}
+```
+### Options.java
+```java
+package vladiscrafter;  
+  
+public enum Options { // создание перечисления  
+    OPTION1, // запятые  
+    OPTION2, // после элементов,  
+    OPTION3; // но точка-с-запятой после последнего  
+}
+```
+### Tiers.java
+```java
+package vladiscrafter;  
+  
+public enum Tiers { // сборка по конструктору
+    TIER1("First tier", 1, 2.2f),  
+    TIER2("Second tier", 2, 2.5f),  
+    TIER3("Third tier", 3, 2.8f);  
+	
+    private String name;  
+    private int level;  
+    private float efficiency;  
+	
+    Tiers(String name, int level, float efficiency) {  
+        this.name = name; // конструктор  
+        this.level = level; // продвинутого  
+        this.efficiency = efficiency; // перечисления  
+    }  
+	
+    // ПКМ -> Generate -> Getter  
+    public String getName() {  
+        return name;  
+    }  
+    public int getLevel() {  
+        return level;  
+    }  
+    public float getEfficiency() {  
+        return efficiency;  
+    }  
+	
+}
+```
