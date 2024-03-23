@@ -728,7 +728,7 @@ public class Main {
 		
         System.out.println("Имя третьего тира: " + chosenTier_one.getName());  
         System.out.println("Уровень второго тира: " + chosenTier_two.getLevel());  
-        System.out.println("Эффективность первого тира: " + chosenTier_three.getEfficiency());  
+        System.out.println("Эффективн. первого тира: " + chosenTier_three.getEfficiency());  
     }  
 }
 ```
@@ -773,4 +773,19 @@ public enum Tiers { // сборка по конструктору
     }  
 	
 }
+```
+# Исключение - пробы и... улов?
+```java
+int i = 1;  
+try {  
+    i = 1 / 0;  
+} catch (Exception e) {  
+    System.out.println("Поймано исключение! " + e.getMessage());  
+}  
+
+System.out.println("Программа продолжает работать, несмотря на пойманное исключение!");  
+  
+if (i >= 0) {  
+    throw new Exception("Почему исключение? Да потому что... потому!");  
+} // кастомное исключение обычного типа
 ```
