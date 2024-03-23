@@ -909,3 +909,24 @@ Record record = new Record("generic_1", 10); // новая запись
 System.out.println("Информация о record: " + record);  
 // Record[name=generic_1, value=10]
 ```
+# JSON
+### resources -> VladisCrafter.json
+```json
+{  
+  "playerName": "VladisCrafter",  
+  "level": 66,  
+  "inventory": {  
+    "items": [  
+      { "name": "Diamond Sword", "damage": 1562 },  
+      { "name":  "Netherite chestplate", "protection":  2 },  
+      { "name":  "Ender Pearl", "count":  16 }  
+    ]  
+  },  
+  "location": {  
+    "x": 2650,  
+    "y": 144,  
+    "z": 1440  
+  },  
+  "isCreativeMode": true  
+}
+```
