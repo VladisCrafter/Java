@@ -789,3 +789,76 @@ if (i >= 0) {
     throw new Exception("Почему исключение? Да потому что... потому!");  
 } // кастомное исключение обычного типа
 ```
+# Генеративы
+### Main.java
+```java
+package vladiscrafter;  
+  
+import java.util.Scanner;  
+  
+public class Main {  
+    public static void main(String[] args) {  
+        ObjectStorage<Object> objectStorage = new ObjectStorage<>();  
+        objectStorage.addObject(new ObjectT1());  
+        objectStorage.addObject(new ObjectT2());  
+        objectStorage.displayObjects();  
+        ObjectStorage<ObjectT2> objectStorageT2 = new ObjectStorage<>();  
+        objectStorageT2.addObject(new ObjectT2());  
+        // objectStorageT2.addObject(new ObjectT1()); // ошибка из-за неподходящего типа  
+  
+    }  
+}
+```
+### ObjectStorage.java
+```java
+package vladiscrafter;  
+  
+import java.util.ArrayList;  
+import java.util.List;  
+  
+public class ObjectStorage<T extends Object> { // в список принимаются только объекты,  
+    private List<T> objects; // исходящие из Object  
+    public ObjectStorage() {  
+        this.objects = new ArrayList<>();  
+    }  
+    public void addObject(T object) {  
+        objects.add(object);  
+        System.out.println(object + " добавлен в список.");  
+    }  
+    public void displayObjects() {  
+        System.out.println("Список объектов:");  
+        for(T object : objects) {  
+            System.out.println("- " + object);  
+        }  
+    }  
+}
+```
+### Object.java
+```java
+package vladiscrafter;  
+  
+public class Object {  
+    public Object(String type) {  
+    }  
+}
+```
+### ObjectT1
+```java
+package vladiscrafter;  
+  
+public class ObjectT1 extends Object {   
+    public ObjectT1() {  
+        super("Object Type 1");  
+    }  
+}
+```
+### ObjectT2
+```java
+package vladiscrafter;  
+  
+public class ObjectT2 extends Object {    
+    public ObjectT2() {  
+        super("Object Type 2");  
+    }  
+}
+```
