@@ -805,7 +805,7 @@ public class Main {
         ObjectStorage<ObjectT2> objectStorageT2 = new ObjectStorage<>();  
         objectStorageT2.addObject(new ObjectT2());  
         // objectStorageT2.addObject(new ObjectT1()); // ошибка из-за неподходящего типа  
-  
+		
     }  
 }
 ```
@@ -859,6 +859,38 @@ package vladiscrafter;
 public class ObjectT2 extends Object {    
     public ObjectT2() {  
         super("Object Type 2");  
+    }  
+}
+```
+# Лямбда-выражения и потоки
+```java
+package vladiscrafter;  
+  
+import java.util.List;  
+import java.util.function.Consumer;  
+import java.util.function.Supplier;  
+  
+public class Main {  
+    public static void something(Runnable runnable) {  
+        runnable.run();  
+    }  
+    public static void hi() {  
+        System.out.println("Здрасте");  
+    }  
+    public static void main(String[] args) {  
+        Runnable runnable = () -> System.out.println("Как метод, наверное?");  
+        something(runnable);  
+        something(Main::hi);  
+        Supplier<Float> x = () -> 6.4f;  
+        Consumer<Runnable> test = runnable1 -> runnable1.run();  
+        test.accept(runnable);  
+        Runnable method = Main::hi;  
+		
+        List<String> objects = List.of("One", "Two", "Three", "Four", "Five");  
+		
+        objects.stream() // конвертация в поток  
+                .filter(object -> object.startsWith("T")) // отбор по критерию  
+                .forEach(System.out::println); // вывод отобранных  
     }  
 }
 ```
