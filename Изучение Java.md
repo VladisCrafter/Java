@@ -894,3 +894,18 @@ public class Main {
     }  
 }
 ```
+# Записи
+### Record.java
+```java
+package vladiscrafter;  
+  
+public record Record(String name, int value) {  
+  // и всё, ничего здесь более не нужно!
+}
+```
+### Main.java
+```java
+Record record = new Record("generic_1", 10); // новая запись
+System.out.println("Информация о record: " + record);  
+// Record[name=generic_1, value=10]
+```
